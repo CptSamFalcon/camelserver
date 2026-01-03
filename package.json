@@ -1,0 +1,18 @@
+{
+  "name": "camel-game-server",
+  "version": "1.0.0",
+  "description": "Game server for Joe Camel: Vape Slayer multiplayer",
+  "main": "game-server.js",
+  "scripts": {
+    "start": "node game-server.js",
+    "dev": "nodemon game-server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1"
+  },
+  "keywords": ["game", "multiplayer", "server", "websocket"],
+  "author": "",
+  "license": "ISC"
+}
+

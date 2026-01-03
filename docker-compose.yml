@@ -1,0 +1,19 @@
+services:
+  camel-game-server:
+    image: camel-game-server:latest
+    container_name: camel-game-server
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+      - NODE_ENV=production
+    networks:
+      - camel-game-network
+
+networks:
+  camel-game-network:
+    driver: bridge

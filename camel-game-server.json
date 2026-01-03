@@ -1,0 +1,59 @@
+{
+  "name": "Camel Game Server",
+  "description": "Multiplayer game server for Joe Camel: Vape Slayer. Host your own game server for online multiplayer sessions.",
+  "icon": "https://raw.githubusercontent.com/icebob/free-ico/master/Game.ico",
+  "type": "docker-compose",
+  "repository": {
+    "url": "https://github.com/CptSamFalcon/camelserver",
+    "type": "git"
+  },
+  "ports": [
+    {
+      "containerPort": 3000,
+      "protocol": "tcp",
+      "label": "Game Server Port"
+    }
+  ],
+  "volumes": [],
+  "environment": [
+    {
+      "name": "PORT",
+      "value": "3000",
+      "label": "Server Port"
+    },
+    {
+      "name": "NODE_ENV",
+      "value": "production",
+      "label": "Node Environment"
+    }
+  ],
+  "compose": {
+    "services": {
+      "camel-game-server": {
+        "image": "camel-game-server:latest",
+        "container_name": "camel-game-server",
+        "build": {
+          "context": ".",
+          "dockerfile": "Dockerfile"
+        },
+        "ports": [
+          "3000:3000"
+        ],
+        "restart": "unless-stopped",
+        "environment": {
+          "PORT": "3000",
+          "NODE_ENV": "production"
+        },
+        "networks": [
+          "camel-game-network"
+        ]
+      }
+    },
+    "networks": {
+      "camel-game-network": {
+        "driver": "bridge"
+      }
+    }
+  }
+}
+
