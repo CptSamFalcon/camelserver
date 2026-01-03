@@ -136,6 +136,27 @@ io.on('connection', (socket) => {
     });
   });
   
+  // Chat message
+  socket.on('chatMessage', (data) => {
+    const { message } = data;
+    const player = players.get(socket.id);
+    const loungePlayer = smokersLounge.players.find(p => p.id === socket.id);
+    
+    if (!player || !loungePlayer || !message || !message.trim()) {
+      return;
+    }
+    
+    // Broadcast chat message to all players in lounge
+    io.to(SMOKERS_LOUNGE_ID).emit('chatMessage', {
+      playerId: socket.id,
+      playerName: loungePlayer.name,
+      message: message.trim(),
+      cosmetic: loungePlayer.cosmetic
+    });
+    
+    console.log(`[Chat] ${loungePlayer.name}: ${message.trim()}`);
+  });
+  
   // Legacy handlers - redirect to Smokers Lounge
   socket.on('createLobby', (data) => {
     socket.emit('loungeJoined', {
