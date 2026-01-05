@@ -1,19 +1,15 @@
 FROM node:18-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
+RUN npm install
 
-# Install dependencies
-RUN npm install --production
+COPY . .
 
-# Copy server file
-COPY game-server.js ./
+RUN mkdir -p data
 
-# Expose port
 EXPOSE 3000
 
-# Start server
-CMD ["node", "game-server.js"]
+CMD ["npm", "start"]
+

@@ -1,19 +1,13 @@
+version: '3.8'
+
 services:
-  camel-game-server:
-    image: camel-game-server:latest
-    container_name: camel-game-server
-    build:
-      context: .
-      dockerfile: Dockerfile
+  smokers-lounge-server:
+    build: .
     ports:
       - "3000:3000"
-    restart: unless-stopped
+    volumes:
+      - ./data:/app/data
     environment:
       - PORT=3000
-      - NODE_ENV=production
-    networks:
-      - camel-game-network
+    restart: unless-stopped
 
-networks:
-  camel-game-network:
-    driver: bridge

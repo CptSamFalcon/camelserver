@@ -1,18 +1,21 @@
 {
-  "name": "camel-game-server",
+  "name": "smokers-lounge-server",
   "version": "1.0.0",
-  "description": "Game server for Joe Camel: Vape Slayer multiplayer",
-  "main": "game-server.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node game-server.js",
-    "dev": "nodemon game-server.js"
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js"
   },
   "dependencies": {
     "express": "^4.18.2",
-    "socket.io": "^4.6.1"
+    "socket.io": "^4.6.1",
+    "sqlite3": "^5.1.6",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "cors": "^2.8.5"
   },
-  "keywords": ["game", "multiplayer", "server", "websocket"],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
 }
 
